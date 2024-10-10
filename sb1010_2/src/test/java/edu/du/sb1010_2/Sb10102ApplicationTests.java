@@ -1,13 +1,13 @@
-package edu.du.sb1010;
+package edu.du.sb1010_2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Sb1010ApplicationTests {
+class Sb10102ApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
