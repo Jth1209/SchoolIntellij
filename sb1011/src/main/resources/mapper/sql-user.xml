@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.du.sb1011.board.mapper.UserMapper">
+	<select id="checkUser" resultType = "int" parameterType="map">
+		select count(*) from user where id = #{id} and password = #{password}
+	</select>
+	<select id="getUserInfo" resultType="edu.du.sb1011.board.dto.UserDto" parameterType="map">
+		select * from user where id = #{id} and password = #{password}
+	</select>
+	<update id="updateUserInfo" parameterType="edu.du.sb1011.board.dto.UserDto">
+		update user set password = #{password} , name = #{name} , email = #{email} where id = #{id}
+	</update>
+	<delete id="deleteUserInfo" parameterType="map">
+		delete from user where id = #{id} and password = #{password}
+	</delete>
+	<insert id="insertUser" parameterType="edu.du.sb1011.board.dto.UserDto">
+		insert into user(id,password,name,email) values (#{id},#{password},#{name},#{email})
+	</insert>
+</mapper>

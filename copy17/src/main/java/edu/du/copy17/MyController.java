@@ -159,7 +159,7 @@ public class MyController {
     }
 
     @PostMapping("/reply")
-    public String reply(Model model, HttpServletRequest request) throws UnsupportedEncodingException, CannotReplyArticleException, ArticleNotFoundException, LastChildAleadyExistsException {
+    public String reply(HttpServletRequest request) throws UnsupportedEncodingException, CannotReplyArticleException, ArticleNotFoundException, LastChildAleadyExistsException {
         request.setCharacterEncoding("euc-kr");
 
         int parentArticledId = Integer.parseInt(request.getParameter("parentArticleId"));//댓글을 달고자 하는 작성자의 아이디
