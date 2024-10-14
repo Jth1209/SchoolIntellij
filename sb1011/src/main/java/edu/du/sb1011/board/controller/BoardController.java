@@ -4,6 +4,7 @@ import edu.du.sb1011.board.dto.BoardDto;
 import edu.du.sb1011.board.dto.UserDto;
 import edu.du.sb1011.board.service.BoardService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

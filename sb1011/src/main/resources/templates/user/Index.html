@@ -10,6 +10,7 @@
     	<h2>홈페이지</h2>
 		<div th:if="${check == 1}">
 			<h1 th:text="${user.name}"></h1>
+			<a href="/board/openBoardList.do" class="btn">게시판으로 가기</a>
 		</div>
 		<div th:if="${check == 0}">
 			로그인 실패.

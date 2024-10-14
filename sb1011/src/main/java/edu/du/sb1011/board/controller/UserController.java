@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.UnsupportedEncodingException;
@@ -24,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/user/loginProcess")
-    public String loginProcess(HttpServletRequest request , Model model) throws UnsupportedEncodingException {
+    public String loginProcess(HttpServletRequest request , HttpSession session , Model model) throws UnsupportedEncodingException {
         request.setCharacterEncoding("utf-8");
 
         String id = request.getParameter("id");
@@ -33,11 +32,13 @@ public class UserController {
         String rvalue = null;
 
         int check = userService.checkUser(id, password);
-        model.addAttribute("check",check);
+        session.setAttribute("check", check);//check = 1
+        model.addAttribute("check",session.getAttribute("check"));
         System.out.println(check);
         if(check == 1){
             UserDto dto = userService.getUserInfo(id,password);
-            model.addAttribute("user", dto);
+            session.setAttribute("user", dto);//dto = 유저 정보
+            model.addAttribute("user",session.getAttribute("user"));
             System.out.println(dto.getName());
             rvalue = "/user/Index";
         }else{
