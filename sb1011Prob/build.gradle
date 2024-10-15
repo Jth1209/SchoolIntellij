@@ -31,12 +31,12 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
 
-    // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
-//    implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.0.33'
+//     https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
+    implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.0.33'
 
-    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.0'
+//    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0'
 
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.7.18'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.7.18'
