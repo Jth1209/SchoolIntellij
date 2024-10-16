@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+
 
 @Controller
 @Log4j2
@@ -51,4 +53,34 @@ public class HelloController {
         mav.addObject("check",Math.floor(m / 3));
         return mav;
     }
+
+    @RequestMapping("/index3")
+    public ModelAndView index3(ModelAndView mav) {
+        mav.setViewName("index3");
+        ArrayList<String[]> data = new ArrayList<>();
+        data.add(new String[]{"park","park@yamaha","090-999-999"});
+        data.add(new String[]{"lee","lee@flower","080-999-999"});
+        data.add(new String[]{"choi","choi@happy","070-999-999"});
+        mav.addObject("data",data);
+        return mav;
+    }
+
+    @RequestMapping("/index4")
+    public ModelAndView index4(ModelAndView mav) {
+        mav.setViewName("index4");
+        ArrayList<String[]> data = new ArrayList<>();
+        data.add(new String[]{"park","park@yamaha","090-999-999"});
+        data.add(new String[]{"lee","lee@flower","080-999-999"});
+        data.add(new String[]{"choi","choi@happy","070-999-999"});
+        mav.addObject("data",data);
+        return mav;
+    }
+
+    @RequestMapping("/tax/{tax}")
+    public ModelAndView index5(@PathVariable int tax, ModelAndView mav) {
+        mav.setViewName("index5");
+        mav.addObject("tax",tax);
+        return mav;
+    }
+
 }

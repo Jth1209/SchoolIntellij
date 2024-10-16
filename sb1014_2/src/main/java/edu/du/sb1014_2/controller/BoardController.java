@@ -18,7 +18,6 @@ import java.util.List;
 
 @Controller
 @Log4j2
-@Transactional
 public class BoardController {
     @Autowired
 
@@ -26,7 +25,7 @@ public class BoardController {
 
     @GetMapping("/")
     public String index() {
-        return "redirect:/board/openBoardList.do";
+        return "redirect:/user/index";
     }
 
     @GetMapping("/board/openBoardList.do")
@@ -43,7 +42,7 @@ public class BoardController {
     }
 
     @PostMapping("/board/insertBoard.do")
-    public String insertBoard(HttpServletRequest request , Model model) throws Exception{
+    public String insertBoard(HttpServletRequest request) throws Exception{
         request.setCharacterEncoding("UTF-8");
         String title = request.getParameter("title");
         String content = request.getParameter("contents");
@@ -72,6 +71,7 @@ public class BoardController {
         return "/board/boardDetail";
     }
 
+    @Transactional
     @PostMapping("/board/updateBoard.do")
     public String updateBoard(HttpServletRequest request) throws Exception{
         request.setCharacterEncoding("UTF-8");
@@ -84,6 +84,7 @@ public class BoardController {
         return "redirect:/board/openBoardList.do";
     }
 
+    @Transactional
     @PostMapping("/board/deleteBoard.do")
     public String deleteBoard(HttpServletRequest request) throws Exception{
         int boardIdx = Integer.parseInt(request.getParameter("boardIdx"));

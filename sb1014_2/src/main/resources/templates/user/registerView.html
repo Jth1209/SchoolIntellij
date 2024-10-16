@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>board</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div class="container">
+		<form method="post" action="/user/registerProcess" th:object="${register}">
+			아이디: <input type="text" name="id" th:value="*{id}" placeholder="새로운 아이디 입력"/>
+			비밀번호: <input type="password" name="password" th:value="*{password}" placeholder="새로운 비밀번호 입력"/>
+			이름: <input type="text" name="name" th:value="*{name}" placeholder="새로운 이름 입력"/>
+			이메일: <input type="text" name="email" th:value="*{email}" placeholder="새로운 이메일 입력"/>
+			<input type="submit" id="submit" value="저장" class="btn"/>
+		</form>
+    </div>
+</body>
+</html>
