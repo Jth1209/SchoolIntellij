@@ -10,7 +10,7 @@ public interface BoardService {
     void updateBoard(int id , String title,String content);
     void deleteBoard(int id);
     void hitCount(int id);
-    void insertBoard(String content , String title);
+    void insertBoard(String content , String title , String writer);
     List<Board> selectAllBoard();
     Board selectById(int id);
 }

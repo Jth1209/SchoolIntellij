@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d9ba8673-1269-4398-8217-b39ed54d24ba" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/../sb1018/src/main/java/edu/du/sb1018/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1018/src/main/java/edu/du/sb1018/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1018/src/main/java/edu/du/sb1018/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1018/src/main/java/edu/du/sb1018/service/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1018/src/main/resources/templates/user/Index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1018/src/main/resources/templates/user/deleteView.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1018/src/main/resources/templates/user/loginView.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1018/src/main/resources/templates/user/registerView.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1018/src/main/resources/templates/user/updateView.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021/src/main/java/edu/du/sb1021/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021/src/main/java/edu/du/sb1021/controller/BeginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021/src/main/resources/static/assets/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021/src/main/resources/static/css/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021/src/main/resources/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021/src/main/resources/static/js/scripts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021/src/main/resources/templates/layout/basic.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021/src/main/resources/templates/sample/accessDenied.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021/src/main/resources/templates/sample/admin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021/src/main/resources/templates/sample/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021/src/main/resources/templates/sample/member.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/java/edu/du/sb1021_2/controller/RegisterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/java/edu/du/sb1021_2/dao/Member.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/java/edu/du/sb1021_2/service/ChangePasswordService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/java/edu/du/sb1021_2/service/DuplicateMemberException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/java/edu/du/sb1021_2/service/MemberDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/java/edu/du/sb1021_2/service/MemberNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/java/edu/du/sb1021_2/service/MemberRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/java/edu/du/sb1021_2/service/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/java/edu/du/sb1021_2/service/WrongIdPasswordException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/resources/messages.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/resources/templates/register/step1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/resources/templates/register/step2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sb1021_2/src/main/resources/templates/register/step3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sb1018/src/main/java/edu/du/sb1018/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sb1018/src/main/java/edu/du/sb1018/controller/BoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sb1018/src/main/java/edu/du/sb1018/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sb1018/src/main/java/edu/du/sb1018/service/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sb1018/src/main/java/edu/du/sb1018/service/BoardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sb1018/src/main/java/edu/du/sb1018/service/BoardServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sb1018/src/main/resources/templates/board/boardList.html" beforeDir="false" afterPath="$PROJECT_DIR$/../sb1018/src/main/resources/templates/board/boardList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sb1018/src/main/resources/templates/board/boardWrite.html" beforeDir="false" afterPath="$PROJECT_DIR$/../sb1018/src/main/resources/templates/board/boardWrite.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2nmLjyJQ9sFTLDEJMN7OdS31S0Y" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "SchoolIntellij",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/DU/IdeaProjects/sb1021",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="d9ba8673-1269-4398-8217-b39ed54d24ba" name="변경" comment="" />
+      <created>1729573445124</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729573445124</updated>
+      <workItem from="1729573446144" duration="421000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -8,6 +8,8 @@
 <body>
 <div class="container">
   <h2>게시글 목록</h2>
+  <h2 th:if="${login !=null and #lists.size(login)>0}"><span th:text="${login.name}+님"></span></h2>
+  <h2 th:unless="${login != null and #lists.size(login)>0}"><a href="/user/Login.do" class="btn">로그인</a></h2>
   <table class="board_list">
     <colgroup>
       <col width="15%"/>

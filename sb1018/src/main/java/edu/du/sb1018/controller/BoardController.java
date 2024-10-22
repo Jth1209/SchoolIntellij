@@ -1,12 +1,14 @@
 package edu.du.sb1018.controller;
 
 import edu.du.sb1018.entity.Board;
+import edu.du.sb1018.entity.User;
 import edu.du.sb1018.service.BoardServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -21,10 +23,13 @@ public class BoardController {
     }
 
     @GetMapping("/board/openBoardList.do")
-    public String boardList(Model model) {
+    public String boardList(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("login");
+        session.setAttribute("user",user);
         List<Board> boards = boardService.selectAllBoard();
         System.out.println(boards);
         model.addAttribute("list",boards);
+        model.addAttribute("login",user);
         return "/board/boardList";
     }
 
@@ -37,7 +42,10 @@ public class BoardController {
     }
 
     @GetMapping("/board/openBoardWrite.do")
-    public String openBoardWrite(){
+    public String openBoardWrite(Model model , HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        System.out.println(user);
+        model.addAttribute("user",user);
         return "/board/boardWrite";
     }
 
@@ -54,8 +62,9 @@ public class BoardController {
     }
 
     @PostMapping("/board/insertBoard.do")
-    public String insertBoard(@RequestParam String title,@RequestParam String contents) {
-        boardService.insertBoard(contents , title);
+    public String insertBoard(@RequestParam String title,@RequestParam String contents, @RequestParam String creator_id) {
+        System.out.println(creator_id);//creator_id를 못받아옴
+        boardService.insertBoard(contents , title , creator_id);
         return "redirect:/board/openBoardList.do";
     }
 }

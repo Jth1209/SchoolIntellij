@@ -48,7 +48,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
 
-    public void insertBoard(String content, String title) {//게시글 추가 (아마 auto_increment에서 문제 생길거임)
+    public void insertBoard(String content, String title, String creator_id) {//게시글 추가 (아마 auto_increment에서 문제 생길거임)
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Board b = new Board();
@@ -56,7 +56,7 @@ public class BoardServiceImpl implements BoardService{
         b.setContents(content);
         b.setTitle(title);
         b.setCreated_datetime(new Date());
-        b.setCreator_id("admin");
+        b.setCreator_id(creator_id);
         b.setDeleted_yn("N");
         b.setHit_cnt(0);
 

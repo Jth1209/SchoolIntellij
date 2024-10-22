@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회원가입 완료</title>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p th:if="${check==1}"><strong th:text="${Member.name} + '님'">이름</strong>
+    회원 가입을 완료했습니다.</p>
+<p th:unless="${check==1}"><strong th:text="${error}"></strong></p>
+<p><a th:href="@{/register/step2}">[첫 화면 이동]</a></p>
+</body>
+</html>

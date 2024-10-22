@@ -9,6 +9,7 @@
 <div class="container">
     <h2>게시글 등록</h2>
     <form id="frm" name="frm" method="post" action="/board/insertBoard.do">
+        <input type="hidden" id="creator_id" th:value="${user.name}"/>
         <table class="board_detail">
             <tr>
                 <td>제목</td>
