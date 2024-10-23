@@ -28,4 +28,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return user;
     }
     private PasswordEncoder bCryptPasswordEncoder() {return new BCryptPasswordEncoder();}
+
+    private UserDetails toUserDetails(Member m){
+        return User.builder().username(m.getUsername()).password(m.getPassword()).roles(m.getRole).build();
+    }
 }

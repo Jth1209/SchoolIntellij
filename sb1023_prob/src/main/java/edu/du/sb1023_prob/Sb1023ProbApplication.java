@@ -1,6 +1,6 @@
-package edu.du.sb1021_2;
+package edu.du.sb1023_prob;
 
-import edu.du.sb1021_2.dao.Member;
+import edu.du.sb1023_prob.entity.Member;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,18 +9,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import java.util.Date;
 
 @SpringBootApplication
-public class Sb10212Application {
+public class Sb1023ProbApplication {
 
     @PersistenceUnit
     private EntityManagerFactory emf;
 
     public static void main(String[] args) {
-        SpringApplication.run(Sb10212Application.class, args);
+        SpringApplication.run(Sb1023ProbApplication.class, args);
     }
 
     @PostConstruct

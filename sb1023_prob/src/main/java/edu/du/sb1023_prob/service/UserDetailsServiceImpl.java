@@ -1,7 +1,8 @@
-package edu.du.sb1021_2.service;
+package edu.du.sb1023_prob.service;
 
 
-import edu.du.sb1021_2.dao.Member;
+
+import edu.du.sb1023_prob.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

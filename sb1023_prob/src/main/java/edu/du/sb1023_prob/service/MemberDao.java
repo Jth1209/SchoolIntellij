@@ -1,14 +1,16 @@
-package edu.du.sb1021_2.service;
+package edu.du.sb1023_prob.service;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.*;
-
-import edu.du.sb1021_2.dao.Member;
+import edu.du.sb1023_prob.entity.Member;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.TypedQuery;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class MemberDao implements MemberRepository{

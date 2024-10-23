@@ -5,9 +5,11 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Setter
-@Getter
+@Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
+@Table(name="member")
 @ToString
 public class Member {
     @Id
