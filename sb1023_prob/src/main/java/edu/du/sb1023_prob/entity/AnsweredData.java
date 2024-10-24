@@ -8,15 +8,20 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name="answer")
 public class AnsweredData {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ad_id")
 	private int ad_id;
+
 	@ElementCollection
+	@Column(name="responses")
 	private List<String> responses;
-	@ManyToOne
+
+	@OneToOne
+	@JoinColumn(name="res_id")
 	private Respondent res;
 
 

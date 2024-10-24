@@ -12,14 +12,10 @@ import java.util.List;
 public class Respondent {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="res_id")
 	private int id;
 	private int age;
 	private String location;
-
-	@OneToMany(mappedBy="ad_id")
-	private List<AnsweredData> answeredData;
-
 
 }

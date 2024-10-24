@@ -1,10 +1,10 @@
 package edu.du.sb1023_prob.controller;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
 import edu.du.sb1023_prob.entity.AnsweredData;
-import edu.du.sb1023_prob.entity.Choice;
 import edu.du.sb1023_prob.entity.Question;
 import edu.du.sb1023_prob.entity.Respondent;
 import org.springframework.stereotype.Controller;
@@ -44,15 +44,16 @@ public class SurveyController {
 
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		Choice choice = new Choice();
-		choice.setFirst(data.getResponses().get(0));
-		choice.setSecond(data.getResponses().get(1));
-		choice.setThird(data.getResponses().get(2));
-		em.persist(choice);
+
 		Respondent rd = new Respondent();
 		rd.setLocation(data.getRes().getLocation());
 		rd.setAge(data.getRes().getAge());
 		em.persist(rd);
+
+		AnsweredData ans = new AnsweredData();
+		ans.setRes(rd);
+		ans.setResponses(data.getResponses());
+		em.persist(ans);
 
 		em.getTransaction().commit();
 		return "/survey/submitted";
