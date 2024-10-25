@@ -1,13 +1,16 @@
 package edu.du.sb1024.controller;
 
-
-import edu.du.sb1024.board.service.BoardService;
 import edu.du.sb1024.entity.BoardDto;
 import edu.du.sb1024.entity.BoardFileDto;
+import edu.du.sb1024.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,32 +30,33 @@ public class BoardController {
 	
 
 	final BoardService boardService;
-	
-	@RequestMapping("board/openBoardList.do")
+//	private final AuthenticationConfiguration authenticationConfiguration;
+
+	@RequestMapping("/board/openBoardList.do")
 	public ModelAndView openBoardList() throws Exception{
 		log.info("====> openBoardList {}", "테스트");
-		ModelAndView mv = new ModelAndView("board/boardList");
-		
+		ModelAndView mv = new ModelAndView("/board/boardList");
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		List<BoardDto> list = boardService.selectBoardList();
 		mv.addObject("list", list);
-		
 		return mv;
 	}
 	
-	@RequestMapping("board/openBoardWrite.do")
+	@RequestMapping("/board/openBoardWrite.do")
 	public String openBoardWrite() throws Exception{
-		return "board/boardWrite";
+		return "/board/boardWrite";
 	}
 	
-	@RequestMapping("board/insertBoard.do")
+	@RequestMapping("/board/insertBoard.do")
 	public String insertBoard(BoardDto board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
+		board.setCreatorId(SecurityContextHolder.getContext().getAuthentication().getName());
 		boardService.insertBoard(board, multipartHttpServletRequest);
 		return "redirect:/board/openBoardList.do";
 	}
 	
-	@RequestMapping("board/openBoardDetail.do")
+	@RequestMapping("/board/openBoardDetail.do")
 	public ModelAndView openBoardDetail(@RequestParam int boardIdx) throws Exception{
-		ModelAndView mv = new ModelAndView("board/boardDetail");
+		ModelAndView mv = new ModelAndView("/board/boardDetail");
 		
 		BoardDto board = boardService.selectBoardDetail(boardIdx);
 		mv.addObject("board", board);
@@ -60,24 +64,24 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping("board/updateBoard.do")
+	@RequestMapping("/board/updateBoard.do")
 	public String updateBoard(BoardDto board) throws Exception{
 		boardService.updateBoard(board);
 		return "redirect:/board/openBoardList.do";
 	}
 	
-	@RequestMapping("board/deleteBoard.do")
+	@RequestMapping("/board/deleteBoard.do")
 	public String deleteBoard(int boardIdx) throws Exception{
 		boardService.deleteBoard(boardIdx);
 		return "redirect:/board/openBoardList.do";
 	}
 	
-	@RequestMapping("board/downloadBoardFile.do")
+	@RequestMapping("/board/downloadBoardFile.do")
 	public void downloadBoardFile(@RequestParam int idx, @RequestParam int boardIdx, HttpServletResponse response) throws Exception{
 		String currentPath = Paths.get("").toAbsolutePath().toString();
 		System.out.println("---------------------"+currentPath);
 		BoardFileDto boardFile = boardService.selectBoardFileInformation(idx, boardIdx);
-		if(ObjectUtils.isEmpty(boardFile) == false) {
+		if(!ObjectUtils.isEmpty(boardFile)) {
 			String fileName = boardFile.getOriginalFileName();
 			
 			byte[] files = FileUtils.readFileToByteArray(new File("./src/main/resources/static"+boardFile.getStoredFilePath()));

@@ -1,21 +1,31 @@
 package edu.du.sb1024.controller;
 
 import edu.du.sb1024.entity.AnsweredData;
+import edu.du.sb1024.entity.Respondent;
 import edu.du.sb1024.survey.Question;
 import edu.du.sb1024.survey.SurveyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.TypedQuery;
 import java.util.Arrays;
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class SurveyController {
+
+	@PersistenceUnit
+	private EntityManagerFactory emf;
 
 	final SurveyService surveyService;
 
@@ -40,10 +50,30 @@ public class SurveyController {
 
 	@PostMapping("/submitted.do")
 	public String submit(@ModelAttribute("ansData") AnsweredData data) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String route = "";
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		//유저 확인 쿼리
+		String q = "select count(a) from AnsweredData a where a.uname = :uname";
+		TypedQuery<Long> query = em.createQuery(q, Long.class);//count를 사용할 때는 반환 타입을 무조건 Long으로 해야함(고정된 반환값인 듯?)
+		query.setParameter("uname", authentication.getName());
+		Long a = query.getSingleResult();
+		System.out.println(a);
+		//이미 설문조사를 진행한 유저인지 확인
+		if(a != 1L) {
+			surveyService.save(data);
+			route = "/survey/submitted";
+		}else{
+			route = "redirect:/survey/already";
+		}
+		em.getTransaction().commit();
+		return route;
+	}
 
-
-		surveyService.save(data);
-		return "/survey/submitted";
+	@GetMapping("/survey/already")
+	public String already() {
+		return "/survey/confirm";
 	}
 
 }

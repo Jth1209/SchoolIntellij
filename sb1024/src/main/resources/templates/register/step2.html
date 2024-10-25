@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http//www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic.html}">
+
+<div layout:fragment="content">
 <head>
-    <title>회원가입</title>
-    <meta http-equiv="Content-Type"
-          content="text/html; charset=UTF-8" />
+  <title>회원가입</title>
 </head>
 <body>
 <h2>회원 정보 입력</h2>
-<form action="/register/step3" method="post" th:object="${Member}">
-    <p>
-        <label>이메일:<br>
-            <input type="email" name="email" th:value="*{email}" placeholder="이메일 입력" />
-        </label>
-    </p>
-    <p>
-        <label>이름:<br>
-            <input type="text" name="name" th:value="*{name}" placeholder="이름 입력" />
-        </label>
-    </p>
-    <p>
-        <label>비밀번호:<br>
-            <input type="password" name="password" th:value="*{password}" placeholder="비밀번호 입력" />
-        </label>
-    </p>
-    <p>
-        <label>비밀번호:<br>
-            <input type="password" name="passwordCheck" th:value="*{passwordCheck}" placeholder="비밀번호 확인" />
-        </label>
-    </p>
-    <input type="submit" value="가입 완료" />
+<form th:action="@{/register/step3}" th:object="${registerRequest}" method="post">
+  <p>
+    <label>이메일:<br>
+      <input type="text" th:field="*{email}" />
+    </label>
+  </p>
+  <p>
+    <label>이름:<br>
+      <input type="text" th:field="*{name}" />
+    </label>
+  </p>
+  <p>
+    <label>비밀번호:<br>
+      <input type="password" th:field="*{password}" />
+    </label>
+  </p>
+  <p>
+    <label>비밀번호 확인:<br>
+      <input type="password" th:field="*{confirmPassword}" />
+    </label>
+  </p>
+  <input type="submit" value="가입 완료">
 </form>
 </body>
 </html>
