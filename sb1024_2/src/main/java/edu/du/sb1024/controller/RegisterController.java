@@ -1,15 +1,16 @@
 package edu.du.sb1024.controller;
 
+import edu.du.sb1024.entity.Member;
 import edu.du.sb1024.spring.DuplicateMemberException;
 import edu.du.sb1024.spring.MemberRegisterService;
 import edu.du.sb1024.spring.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -45,20 +46,26 @@ public class RegisterController {
     }
 
     @PostMapping("/register/step3")
-    public String handleStep3(RegisterRequest regReq) {
-        String route = "";
-        int count = memberRegisterService.checkEmail(regReq.getEmail());
-        if (count == 1) {
-            route = "redirect:/register/alreadyHave ";
-        } else {
-            if (regReq.getPassword().equals(regReq.getConfirmPassword())) {
-                memberRegisterService.regist(regReq);
-                route = "register/step3";
-            }else{
-                route = "redirect:/register/passwordError";
-            }
+    public String handleStep3(@Valid @ModelAttribute("registerRequest") RegisterRequest registerReq, BindingResult bindingResult) {
+//        String route = "";
+//        int count = memberRegisterService.checkEmail(member.getEmail());
+//        if (count == 1) {
+//            route = "redirect:/register/alreadyHave ";
+//        } else {
+//            if (member.getPassword().equals(member.getConfirmPassword())) {
+//                memberRegisterService.regist(member);
+//                route = "register/step3";
+//            }else{
+//                route = "redirect:/register/passwordError";
+//            }
+//        }
+//        return route;
+        if(bindingResult.hasErrors()) {
+            return "register/step2";
+        }else{
+            memberRegisterService.regist(registerReq);
+            return "register/step3";
         }
-        return route;
     }
 
     @GetMapping("/register/alreadyHave")

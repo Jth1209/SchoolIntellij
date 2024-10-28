@@ -58,9 +58,7 @@ public class SurveyController {
 		em.getTransaction().begin();
 		//유저 확인 쿼리
 		String q = "select count(a) from AnsweredData a where a.uname = :uname";
-		TypedQuery<Long> query = em.createQuery(q, Long.class);//count를 사용할 때는 반환 타입을 무조건 Long으로 해야함(고정된 반환값인 듯?)
-		query.setParameter("uname", authentication.getName());
-		Long a = query.getSingleResult();
+		Long a = em.createQuery(q, Long.class).setParameter("uname",authentication.getName()).getSingleResult();//count를 사용할 때는 반환 타입을 무조건 Long으로 해야함(고정된 반환값인 듯?)
 		System.out.println(a);
 		//이미 설문조사를 진행한 유저인지 확인
 		if(a != 1L) {
@@ -82,18 +80,15 @@ public class SurveyController {
 	public String statistic(Model model) {
 		List<String> location = new ArrayList<>();
 		List<Integer> age = new ArrayList<>();
-		List<String> want = new ArrayList<>();
-		List<String> first = new ArrayList<>();
-		List<String> second = new ArrayList<>();
-		List<String> userChoice = new ArrayList<>();
+		List<String> want = responsesService.selectThree();
+		List<String> first = responsesService.selectOne();
+		List<String> second = responsesService.selectTwo();
+		int sum = 0;
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		want = responsesService.selectThree();
-		first = responsesService.selectOne();
-		second = responsesService.selectTwo();
 
 		int id = em.createQuery("select a.id from AnsweredData a where a.uname = :uname",Integer.class).setParameter("uname",authentication.getName()).getSingleResult();
 		List<Respondent> r = em.createQuery("select r from Respondent r", Respondent.class).getResultList();
@@ -102,22 +97,31 @@ public class SurveyController {
 			age.add(rr.getAge());
 		}//설문자의 위치와 나이 정보 얻기
 
-		userChoice = responsesService.selectUserChoice(id);
+		List<String> userChoice = responsesService.selectUserChoice(id);
 		int count = responsesService.userCount();
+
+		for(int ages : age){
+			sum += ages;
+		}
 
 		int percentage1 = Collections.frequency(first,userChoice.get(0));
 		int percentage2 = Collections.frequency(second,userChoice.get(1));
 
-		double per1 = ((double) percentage1 /count) * 100;
-		double per2 = ((double) percentage2 /count) * 100;
+		double per1 = Math.floor(((double) percentage1 /count) * 100);
+		double per2 = Math.floor(((double) percentage2 /count) * 100);
+		double totalAge = Math.floor(((double) sum/count));
+
 
 		em.getTransaction().commit();
-		model.addAttribute("location", location);
-		model.addAttribute("age", age);
-		model.addAttribute("third", want);
-		model.addAttribute("count", count);
-		model.addAttribute("per1",per1);
-		model.addAttribute("per2",per2);
+		model.addAttribute("location", location);//설문 조사에 참여한 인원들의 거주 지역
+		model.addAttribute("totalAge", totalAge);//설문조사에 참여한 참가자들의 평균 연령대
+		model.addAttribute("third", want);//하고싶은 말
+		model.addAttribute("count", count);// 설문조사에 참여한 모든 인원
+		model.addAttribute("per1",per1);//현재 사용자의 1번째 답변이 차지하는 퍼센테이지
+		model.addAttribute("per2",per2);//현재 사용자의 2번째 답변이 차지하는 퍼센테이지
+		model.addAttribute("userChoice1",userChoice.get(0));//1번 답
+		model.addAttribute("userChoice2",userChoice.get(1));//2번 답
+		model.addAttribute("username",authentication.getName());
 
 		return "/survey/statistic";
 	}

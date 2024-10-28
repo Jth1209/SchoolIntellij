@@ -4,17 +4,15 @@
       layout:decorate="~{layout/basic.html}">
 
 <div layout:fragment="content">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<p th:text="${per1}"></p>
-<p th:text="${per2}"></p>
-<p th:text="${want}"></p>
-<p th:text="${age}"></p>
-<p th:text="${location}"></p>
-<p th:text="${count}"></p>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <p th:text="${username} + '님이 답하신 ' + ${userChoice1} +'을(를) 선택한 비율은 ' + ${per1} + '% 입니다.'"></p>
+    <p th:text="${username} + '님이 답하신 ' + ${userChoice2} +'을(를) 선택한 비율은 ' + ${per2} + '% 입니다.'"></p>
+    <p th:text="'설문에 참여한 사용자의 평균 연령은 ' + ${totalAge} +' 입니다.'"></p>
+    <p th:text="${want}"></p>
+    </body>
 </div>
 </html>
