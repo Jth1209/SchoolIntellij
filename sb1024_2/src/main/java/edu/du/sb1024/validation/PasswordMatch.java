@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PasswordMatch {
-    String message() default "비밀번화와 확인된 번호가 일치하지 않습니다.";
+    String message() default " ";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
