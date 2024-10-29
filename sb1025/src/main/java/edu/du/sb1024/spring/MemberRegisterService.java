@@ -34,6 +34,15 @@ public class MemberRegisterService {
 		return newMember.getId();
 	}
 
+	public int checkEmail(String email){
+		Optional<Member> member = memberDao.selectByEmail(email);
+		int count = 0;
+		if (member.isPresent()){
+			count = 1;
+		}
+		return count;
+	}
+
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}

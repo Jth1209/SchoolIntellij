@@ -17,12 +17,16 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.File;
 import java.net.URLEncoder;
 import java.nio.file.Paths;
@@ -59,20 +63,23 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/openBoardWrite.do")
-	public String openBoardWrite() throws Exception{
+	public String openBoardWrite(@ModelAttribute("boards") BoardDto boardDto) throws Exception{
 		return "/board/boardWrite";
 	}
 	
 	@RequestMapping("/board/insertBoard.do")
-	public String insertBoard(BoardDto board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
+	public String insertBoard(@ModelAttribute("boards") @Valid BoardDto board, Errors errors ,MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
+		if(errors.hasErrors()){
+			return "/board/boardWrite";
+		}
 		boardRepositoryImpl.insertBoard(board.getTitle(),board.getContents());
 //		boardService.insertBoard(board, multipartHttpServletRequest);
 		return "redirect:/board/openBoardList.do";
 	}
 	
-	@RequestMapping("board/openBoardDetail.do")
-	public ModelAndView openBoardDetail(@RequestParam int boardIdx) throws Exception{
-		ModelAndView mv = new ModelAndView("board/boardDetail");
+	@RequestMapping("/board/openBoardDetail.do")
+	public ModelAndView openBoardDetail(@RequestParam int boardIdx , @ModelAttribute("board") BoardDto dto) throws Exception{
+		ModelAndView mv = new ModelAndView("/board/boardDetail");
 
 		Board b1 = boardRepository.findAllByBoardIdx(boardIdx);
 		boardRepositoryImpl.updateHit(boardIdx);
@@ -82,8 +89,8 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping("board/updateBoard.do")
-	public String updateBoard(BoardDto board) throws Exception{
+	@RequestMapping("/board/updateBoard.do")
+	public String updateBoard(@Valid BoardDto board) throws Exception{
 		boardRepositoryImpl.updateBoard(board.getBoardIdx(),board.getTitle(),board.getContents());
 //		boardService.updateBoard(board);
 		return "redirect:/board/openBoardList.do";

@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<h2>게시글 상세 화면</h2>
-	    <form id="frm" method="post">
+	    <form id="frm" method="post" th:object="${board}">
 	    	<table class="board_detail">
 				<colgroup>
 					<col width="15%"/>
@@ -36,11 +36,13 @@
 					</tr>
 					<tr>
 						<th scope="row">제목</th>
-						<td colspan="3"><input type="text" id="title" name="title" th:value="${board.title }"/></td>
+						<td colspan="3"><input type="text" id="title" name="title" th:field="*{title}"/>
+							<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></span></td>
 					</tr>
 					<tr>
 						<td colspan="4" class="view_text">
-							<textarea title="내용" id="contents" name="contents" th:text="${board.contents }"></textarea>
+							<textarea title="내용" id="contents" name="contents" th:field="*{contents}"></textarea>
+							<span th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}" class="error"></span>
 						</td>
 					</tr>
 				</tbody>
@@ -102,4 +104,5 @@
 		});
 	</script>
 </body>
+</div>
 </html>
