@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${#messages.msg('member.register')}"></title>
+</head>
+<body>
+<p>
+    <span th:text="${#messages.msg('register.done', 'registerRequest.name')}"></span>
+</p>
+<p>
+    <a th:href="@{/main/main}">
+        [<span th:text="${#messages.msg('go.main')}"></span>]
+    </a>
+</p>
+</body>
+</html>

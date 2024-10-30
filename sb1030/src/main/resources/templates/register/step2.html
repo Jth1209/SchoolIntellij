@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${#messages.msg('member.register')}"></title>
+</head>
+<body>
+<h2 th:text="${#messages.msg('member.info')}"></h2>
+<form th:action="@{/register/step3}" th:object="${registerRequest}" method="post">
+    <p>
+        <label>
+            <span th:text="${#messages.msg('email')}">이메일:</span><br>
+            <input type="email" th:field="*{email}" />
+            <div th:if="${#fields.hasErrors('email')}" th:each="error : ${#fields.errors('email')}" th:text="${error}"></div>
+        </label>
+    </p>
+    <p>
+        <label>
+            <span th:text="${#messages.msg('name')}">이름:</span><br>
+            <input type="text" th:field="*{name}" />
+            <div th:if="${#fields.hasErrors('name')}" th:each="error : ${#fields.errors('name')}" th:text="${error}"></div>
+        </label>
+    </p>
+    <p>
+        <label>
+            <span th:text="${#messages.msg('password')}">비밀번호:</span><br>
+            <input type="password" th:field="*{password}" />
+            <div th:if="${#fields.hasErrors('password')}" th:each="error : ${#fields.errors('password')}" th:text="${error}"></div>
+        </label>
+    </p>
+    <p>
+        <label>
+            <span th:text="${#messages.msg('password.confirm')}">비밀번호 확인:</span><br>
+            <input type="password" th:field="*{confirmPassword}" />
+            <div th:if="${#fields.hasErrors('confirmPassword')}" th:each="error : ${#fields.errors('confirmPassword')}" th:text="${error}"></div>
+        </label>
+    </p>
+    <input type="submit" th:value="${#messages.msg('register.btn')}" />
+</form>
+</body>
+</html>
