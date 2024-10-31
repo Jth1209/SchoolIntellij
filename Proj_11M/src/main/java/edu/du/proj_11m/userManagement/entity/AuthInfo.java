@@ -1,4 +1,4 @@
-package edu.du.sb1030.spring;
+package edu.du.proj_11m.userManagement.entity;
 
 import lombok.Getter;
 
